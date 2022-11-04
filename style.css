@@ -2,3 +2,17 @@
     text-align: center;
 }
 
+#color-palette {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color {
+    height: 40px;
+    width: 40px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 10px;
+    
+}
