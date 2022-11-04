@@ -16,10 +16,25 @@ body {
 }
 
 .color {
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
     border: 1px solid black;
     display: inline-block;
     margin: 4px;
     
+}
+
+#pixel-board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pixel {
+    height: 40px;
+    width: 40px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 2px;
 }
