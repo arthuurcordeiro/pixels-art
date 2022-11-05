@@ -42,6 +42,10 @@ window.onload = () => {
     }
     document.querySelectorAll('.color')[0].className = 'color selected'
     paintClick();
+    const savedColors = JSON.parse(localStorage.getItem('pixelBoard'))    
+    if (savedColors != null) {
+        applySavedColors();
+    }
 }
 
 function classSelected (event) {
@@ -56,7 +60,9 @@ document.querySelector('#color-palette').addEventListener('click', classSelected
 function colorSelected (event) {
     const toPaintColor = document.querySelector('.selected').style.backgroundColor;
     event.target.style.backgroundColor = toPaintColor
+    storagePixels();
 }
+
 
 function paintClick() {
     const paintablePixel = document.querySelectorAll('.pixel');
@@ -73,3 +79,20 @@ clearPixels.addEventListener('click', () => {
         pixels[c].style.backgroundColor = 'white'
     }
     })
+
+function storagePixels () {
+    const paintedPixels = document.querySelectorAll('.pixel')
+    let savedColors = []
+    for (let s = 0; s < paintedPixels.length; s ++) {
+        savedColors.push(paintedPixels[s].style.backgroundColor)
+    }
+    localStorage.setItem('pixelBoard',JSON.stringify(savedColors))
+}
+
+function applySavedColors () {
+    const applyColors = document.querySelectorAll('.pixel')
+    const savedColors = JSON.parse(localStorage.getItem('pixelBoard'))       
+    for (let a = 0; a < applyColors.length; a ++){
+        applyColors[a].style.backgroundColor = savedColors[a]
+        }
+}
