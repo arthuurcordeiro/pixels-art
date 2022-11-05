@@ -1,6 +1,7 @@
 const tablePixels = document.querySelector('#pixel-board');
 const input = document.querySelector('#board-size');
 const pixelsButton = document.querySelector('#generate-board');
+const vqvButton = document.querySelector('#generate-board');
 
 document.querySelectorAll('.color')
 function colorRandom (){
@@ -34,11 +35,11 @@ function meuStorage (array){
 }
 
 window.onload = () => {
-    tablePixels.style.width = `${5 * 40 }px`;
-    for (let index = 0; index < 25; index ++) {
-        const pixel = document.createElement('div')
-        pixel.className = 'pixel'
-        tablePixels.appendChild(pixel);
+    let savedBoard = localStorage.getItem('boardSize')
+    if (savedBoard != null) {
+        createBoard(savedBoard)
+    } else {
+        createBoard(5)
     }
     document.querySelectorAll('.color')[0].className = 'color selected'
     paintClick();
@@ -53,6 +54,7 @@ function classSelected (event) {
         document.querySelectorAll('.color')[k].classList.remove('selected')
         event.target.className = 'color selected'
     }
+
 }
 
 document.querySelector('#color-palette').addEventListener('click', classSelected);
@@ -96,3 +98,30 @@ function applySavedColors () {
         applyColors[a].style.backgroundColor = savedColors[a]
         }
 }
+
+vqvButton.addEventListener('click', () => {
+    if (input.value === '') {
+        alert('Board inválido!')
+    }
+    else if (input.value < 5) {
+        input.value = 5
+    }
+    else if (input.value > 50) {
+        input.value = 50
+    }
+    createBoard(input.value);
+    localStorage.setItem('boardSize', input.value)
+})
+
+function createBoard (px) {
+    tablePixels.innerHTML = ''
+    tablePixels.style.width = `${px * 40 }px`;
+    for (let index = 0; index < px*px; index ++) {
+        const pixel = document.createElement('div')
+        pixel.className = 'pixel'
+        tablePixels.appendChild(pixel);
+    }
+    tablePixels.style.gridTemplateColumns = `repeat(${px}, 1fr)`;
+
+}
+
