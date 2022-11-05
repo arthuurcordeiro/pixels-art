@@ -25,16 +25,27 @@ body {
 }
 
 #pixel-board {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin: 10px;
 }
 
 .pixel {
     height: 40px;
     width: 40px;
     border: 1px solid black;
-    display: inline-block;
-    margin: 2px;
+    background-color: white;
+}
+
+#board-size {
+    text-align: center;
+}
+
+#generate-board {
+
+}
+
+.align {
+    display: flex;
+    padding: 10px;
 }
