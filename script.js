@@ -66,3 +66,10 @@ for (let p = 0; p < paintablePixel.length; p ++) {
 }
 }
 
+const clearPixels = document.querySelector('#clear-board')
+clearPixels.addEventListener('click', () => {
+    const pixels = document.querySelectorAll('.pixel')
+    for (let c = 0; c < pixels.length; c ++){
+        pixels[c].style.backgroundColor = 'white'
+    }
+    })
